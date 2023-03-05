@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import LayoutComponent from "@/components/AppLayout.vue";
-import ApiTest from "@/components/ApiTest.vue";
+import WeatherApi from "@/components/WeatherApi.vue";
+
 </script>
-<!---->
+
 <template>
   <layout-component>
-    <api-test></api-test>
+    <weather-api></weather-api>
   </layout-component>
 </template>
