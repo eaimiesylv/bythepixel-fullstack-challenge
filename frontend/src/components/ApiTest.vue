@@ -17,23 +17,19 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
+
 import { useUserStore } from '../stores';
 
 export default {
   setup() {
-    const isLoading = ref(true);
+    
     const userStore = useUserStore();
     userStore.fetchData();
     
     function toSentenceCase(str) {
       return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
     }
-    onMounted(async () => {
-      if(userStore.users.length>0){
-      isLoading.value = false;
-      }
-    });
+    
 
     return {
       users: userStore.users, // fix: useUserStore().usersWeather
@@ -44,7 +40,7 @@ export default {
         { id: 4, key: "longitude" },
       ],
       toSentenceCase,
-      isLoading
+    
     };
   },
 };
