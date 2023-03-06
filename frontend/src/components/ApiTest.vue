@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <table class="table">
       <thead>
         <tr>
@@ -16,26 +17,34 @@
 </template>
 
 <script>
+import { onMounted, ref } from 'vue';
 import { useUserStore } from '../stores';
 
 export default {
   setup() {
+    const isLoading = ref(true);
     const userStore = useUserStore();
     userStore.fetchData();
+    
     function toSentenceCase(str) {
       return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
     }
+    onMounted(async () => {
+      if(userStore.users.length>0){
+      isLoading.value = false;
+      }
+    });
 
     return {
-      users: userStore.users.users,
+      users: userStore.users, // fix: useUserStore().usersWeather
       titles: [
-       
         { id: 1, key: "name" },
         { id: 2, key: "email" },
         { id: 3, key: "latitude" },
         { id: 4, key: "longitude" },
       ],
-      toSentenceCase
+      toSentenceCase,
+      isLoading
     };
   },
 };

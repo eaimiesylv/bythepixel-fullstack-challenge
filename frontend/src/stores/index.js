@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { ALL_USERS_URL,getUserWeatherUrl} from './url.js';
 
 export const useUserStore = defineStore({
   id: 'user',
@@ -10,8 +11,8 @@ export const useUserStore = defineStore({
   actions: {
     async fetchData() {
       try {
-        const url = 'http://localhost/';
-        const allusers = await fetch(url).then(response => response.json());
+       
+        const allusers = await fetch(ALL_USERS_URL).then(response => response.json());
         
         const userWeather = [];
         
@@ -30,9 +31,8 @@ export const useUserStore = defineStore({
     },
 
     async fetchUserWeather(lat, lon) {
-      const appId = 'c4b8deb1cf03d2f44edac9759de75ee0';
       try {
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`
+        const url =getUserWeatherUrl(lat,lon)
         const resp = await fetch(url).then(response => response.json());
         return resp;
       } catch(e) {
