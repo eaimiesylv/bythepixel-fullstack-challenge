@@ -9,7 +9,7 @@ This is an application that show the weather condition of user using the latitud
 - Ensure version docker installed is active on host
 - Copy .env.example: `cp .env.example .env`
 - Start docker containers `docker compose up` (add `-d` to run detached)
-- Connect to container to run commands: `docker exec -it fullstack-challenge-app-1 bash`
+- Connect to container to run commands: `docker exec -it api-app-1 bash`
   - Make sure you are in the `/var/www/html` path
   - Install php dependencies: `composer install`
   - Setup app key: `php artisan key:generate`
